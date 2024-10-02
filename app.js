@@ -93,7 +93,7 @@ function validateCreditCard(cardNumber) {
     } else if (luhnCheck(cardNumber)) {
         paymentMessage.innerHTML = "Success!"
         creditCardInput.style.borderColor = "green"
-            if (creditCardInput.value.replace(/\D/g, '') != cardNumber) {
+            if (creditCardInput.value.replace(" ","") != cardNumber) {
                 paymentMessage.innerHTML = "Success! I think you're drunk, but close enough"
             creditCardInput.style = "color:purple"
             }
@@ -118,11 +118,13 @@ function luhnCheck(input) {
       sum += digit;
       isSecond = !isSecond;
     }
+
     return sum % 10 === 0;
   }
 
 payButton.addEventListener("click", () => {
 
+    
     const cardNumber = creditCardInput.value
     const cardNumberCleaned = cleanCardNumber(cardNumber)
     console.log(cardNumberCleaned)
